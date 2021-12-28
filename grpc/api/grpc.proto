@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package grpcapi;
+option go_package = "pkg/grpcapi";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+message Entity {
+    string ID = 1;
+    string Name = 2;
+    string City = 3;
+    string Country = 4;
+    repeated string Alias = 5;
+    repeated string Regions = 6;
+    repeated Coordinate Coordinates = 7;
+    string Province = 8;
+    string Timezone = 9;
+    repeated string Unlocs = 10;
+    string Code = 11;
+}
+
+message Coordinate {
+    int32 Deg = 1;
+    int32 Min = 2;
+}
+
+message GetReq {
+    string ID = 1;    
+}
+
+message AddReq {
+    string ID = 1;
+    Entity Data = 2;
+}
+
+service GRPCService {
+    rpc GetEntity(GetReq) returns (Entity){
+        option (google.api.http) = {
+            get: "/v1/entity"
+            body: ""
+        };   
+    };
+    rpc AddEntity(AddReq) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "/v1/entity"
+            body: "*"
+        };
+    };
+} 

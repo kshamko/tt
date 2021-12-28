@@ -1,0 +1,181 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/grpc.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/entity": {
+      "get": {
+        "operationId": "GRPCService_GetEntity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/grpcapiEntity"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GRPCService"
+        ]
+      },
+      "post": {
+        "operationId": "GRPCService_AddEntity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpcapiAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "GRPCService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpcapiAddReq": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Data": {
+          "$ref": "#/definitions/grpcapiEntity"
+        }
+      }
+    },
+    "grpcapiCoordinate": {
+      "type": "object",
+      "properties": {
+        "Deg": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Min": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "grpcapiEntity": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "Alias": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/grpcapiCoordinate"
+          }
+        },
+        "Province": {
+          "type": "string"
+        },
+        "Timezone": {
+          "type": "string"
+        },
+        "Unlocs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Code": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
