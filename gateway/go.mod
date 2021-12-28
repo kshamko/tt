@@ -11,7 +11,7 @@ require (
 	github.com/go-openapi/strfmt v0.20.1
 	github.com/go-openapi/swag v0.19.15
 	github.com/jessevdk/go-flags v1.5.0
-	github.com/kshamko/tt/grpc v0.0.0-20211228160116-b95f50f35421
+	github.com/kshamko/tt/grpc v0.0.0-20211228200539-0f3d0fa2a062
 	github.com/prometheus/client_golang v1.10.0
 	github.com/sirupsen/logrus v1.6.0
 	golang.org/x/net v0.0.0-20210510120150-4163338589ed

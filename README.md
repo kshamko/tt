@@ -22,4 +22,5 @@ or in a browser
 - fix linter errors and linter check to the Dockerfiles
 - improve errors output to users by the gateway
 - use grpc stream to send data to internal service
+- mount json file as volume in docker-compose
 - would move data import from gateway to internal service
